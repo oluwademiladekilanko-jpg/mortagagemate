@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MortgageMate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="masthead">
+    <h1>MortgageMate</h1>
+    <p>Work out a monthly payment, then track the application through to a decision.</p>
+  </header>
+
+  <main class="layout">
+    <section class="card calculator">
+      <h2>Estimate a payment</h2>
+      <form id="calc-form">
+        <label>
+          Applicant name
+          <input type="text" name="applicantName" required placeholder="Jordan Reyes" />
+        </label>
+        <label>
+          Annual income ($)
+          <input type="number" name="annualIncome" required min="1" step="1000" placeholder="72000" />
+        </label>
+        <label>
+          Home price ($)
+          <input type="number" name="homePrice" required min="1" step="1000" placeholder="400000" />
+        </label>
+        <label>
+          Down payment ($)
+          <input type="number" name="downPayment" required min="0" step="1000" placeholder="80000" />
+        </label>
+        <label>
+          Interest rate (annual %)
+          <input type="number" name="annualInterestRate" required min="0" step="0.01" placeholder="6.00" />
+        </label>
+        <label>
+          Loan term (years)
+          <select name="loanTermYears">
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30" selected>30</option>
+          </select>
+        </label>
+
+        <div class="actions">
+          <button type="submit" formaction="preview">Preview payment</button>
+          <button type="submit" formaction="submit" class="primary">Submit application</button>
+        </div>
+      </form>
+
+      <div id="result" class="result" hidden>
+        <p class="monthly-payment"><span id="payment-amount">$0</span> / month</p>
+        <p id="affordability" class="affordability"></p>
+      </div>
+    </section>
+
+    <section class="card applications">
+      <h2>Applications</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Applicant</th>
+            <th>Home price</th>
+            <th>Monthly payment</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="applications-body">
+          <tr class="empty-row"><td colspan="5">No applications yet.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
